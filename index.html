@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My GitHub Website</title>
-    <style>
+    <style id="dynamic-styles">
+        /* Default styles will be applied here */
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin-top: 50px;
-            background: linear-gradient(135deg, #d0f0ff, #add8e6); /* Light blue gradient background */
-            color: #333; /* Dark text for contrast */
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -37,15 +36,34 @@
     </style>
 </head>
 <body>
-    <h1>Hails Hahn</h1>
-    <p>Hosted on GitHub Pages</p>
-    <button onclick="alert('Button was clicked!')">Click Me!</button>
+    <h1 id="heading">Hails Hahn</h1>
+    <p id="subheading">Hosted on GitHub Pages</p>
+    <button id="dynamic-button">Click Me!</button>
 
     <script>
-        // You can add more complex JavaScript functionality here if needed
-        function myFunction() {
-            alert("Button was clicked!");
-        }
+        // Load the config file and update the page dynamically
+        fetch('config.json')
+            .then(response => response.json())
+            .then(config => {
+                // Apply the background gradient colors from the config
+                document.body.style.background = `linear-gradient(135deg, ${config.background.gradientStart}, ${config.background.gradientEnd})`;
+
+                // Apply dynamic button styles and text
+                const button = document.getElementById('dynamic-button');
+                button.innerHTML = config.button.text;
+                button.style.backgroundColor = config.button.backgroundColor;
+                button.addEventListener('mouseover', () => {
+                    button.style.backgroundColor = config.button.hoverBackgroundColor;
+                });
+                button.addEventListener('mouseout', () => {
+                    button.style.backgroundColor = config.button.backgroundColor;
+                });
+
+                // Apply dynamic text content from config
+                document.getElementById('heading').innerText = config.text.heading;
+                document.getElementById('subheading').innerText = config.text.subheading;
+            })
+            .catch(err => console.error('Error loading config file:', err));
     </script>
 </body>
 </html>
