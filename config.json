@@ -1,0 +1,15 @@
+{
+  "background": {
+    "gradientStart": "#d0f0ff",
+    "gradientEnd": "#add8e6"
+  },
+  "button": {
+    "text": "Click Me!",
+    "backgroundColor": "#008CBA",
+    "hoverBackgroundColor": "#006f8c"
+  },
+  "text": {
+    "heading": "Hails Hahn",
+    "subheading": "Hosted on GitHub Pages"
+  }
+}
