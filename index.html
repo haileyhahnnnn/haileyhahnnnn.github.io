@@ -58,7 +58,10 @@
                 button.addEventListener('mouseout', () => {
                     button.style.backgroundColor = config.button.backgroundColor;
                 });
-
+                // Enable button navigation
+                button.onclick = () => {
+                    window.location.href = 'new-page.html';
+            };
                 // Apply dynamic text content from config
                 document.getElementById('heading').innerText = config.text.heading;
                 document.getElementById('subheading').innerText = config.text.subheading;
